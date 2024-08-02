@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .main {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transform: translateX(100%);
+            transition: transform 0.6s ease-in-out;
+        }
+        .slide-in-right {
+            transform: translateX(0);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type=text], input[type=password], input[type=email], select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 14px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #0056b3;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .login-link:hover {
+            color: #0056b3;
+        }
+        .login-link a {
+            text-decoration: none;
+        }
+        #signup-error {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            const form = document.querySelector('.main');
+            form.classList.add('slide-in-right');
+            toggleIdField();
+        });
+
+        async function handleSignupError() {
+            const errorDiv = document.getElementById('signup-error');
+            const name = document.getElementById('name').value;
+            const prn = document.getElementById('prn').value;
+            const facultyId = document.getElementById('faculty_id').value;
+            const eventId = document.getElementById('event_id').value;
+            const email = document.getElementById('email').value;
+            const category = document.getElementById('category').value;
+
+            let id;
+            if (category === 'student') {
+                id = prn;
+            } else if (category === 'faculty') {
+                id = facultyId;
+            } else if (category === 'event_manager') {
+                id = eventId;
+            }
+
+            const isDuplicate = await checkForDuplicate(name, id, email);
+
+            if (isDuplicate) {
+                errorDiv.innerText = 'Credentials are already taken. Please choose another.';
+                return false;
+            }
+
+            errorDiv.innerText = '';
+            return true;
+        }
+
+        async function checkForDuplicate(name, id, email) {
+            const response = await fetch('/check-duplicate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, id, email }),
+            });
+
+            const data = await response.json();
+            return data.isDuplicate;
+        }
+
+        function toggleIdField() {
+            const category = document.getElementById('category').value;
+            const prnField = document.getElementById('prn-field');
+            const facultyIdField = document.getElementById('faculty_id-field');
+            const eventIdField = document.getElementById('event_id-field');
+            
+            prnField.style.display = 'none';
+            facultyIdField.style.display = 'none';
+            eventIdField.style.display = 'none';
+
+            if (category === 'student') {
+                prnField.style.display = 'block';
+            } else if (category === 'faculty') {
+                facultyIdField.style.display = 'block';
+            } else if (category === 'event_manager') {
+                eventIdField.style.display = 'block';
+            }
+        }
+
+        function showLoginForm() {
+            const form = document.querySelector('.main');
+            form.classList.remove('slide-in-right');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            },100);
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <h2>Signup</h2>
+        <div id="signup-error"></div>
+        <form action="/signup" method="POST" onsubmit="return handleSignupError();">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="category">Category:</label><br>
+            <select id="category" name="category" onchange="toggleIdField()" required>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+                <option value="event_manager">Event Manager</option>
+            </select><br>
+            <div id="prn-field" style="display:none;">
+                <label for="prn">PRN:</label><br>
+                <input type="text" id="prn" name="prn"><br>
+            </div>
+            <div id="faculty_id-field" style="display:none;">
+                <label for="faculty_id">Faculty ID:</label><br>
+                <input type="text" id="faculty_id" name="faculty_id"><br>
+            </div>
+            <div id="event_id-field" style="display:none;">
+                <label for="event_id">Event ID:</label><br>
+                <input type="text" id="event_id" name="event_id"><br>
+            </div>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <input type="submit" value="Signup">
+        </form>
+        <p class="login-link" onclick="showLoginForm()"><i class="fa fa-sign-in"></i> Login here</p>
+    </div>
+</body>
+</html>

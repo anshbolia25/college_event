@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/event" method="post" enctype="multipart/form-data">
+            <label for="name">Event Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="start_date">Event Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+
+            <label for="end_date">Event End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+
+            <label for="location">Event Location:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="description">Event Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="image">Event Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <label for="type">Event Type:</label>
+            <select id="type" name="type">
+                <option value="education">Education</option>
+                <option value="social">Social</option>
+                <option value="seminar">Seminar</option>
+            </select>
+
+            <label for="is_paid">Event Cost:</label>
+            <select id="is_paid" name="is_paid">
+                <option value="free">Free</option>
+                <option value="paid">Paid</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

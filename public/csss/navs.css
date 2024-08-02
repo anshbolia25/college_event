@@ -1,0 +1,70 @@
+header{
+    display:  flex;
+    justify-content: space-between;
+    height: 60px;
+}
+header .logo{
+    height: 60px;
+}
+
+header .navbar .nav-elements{
+        display: flex;
+        gap: 80px;
+        height: 60px;
+        align-items: center;
+    /* ; */
+}
+
+.nav-elements{
+    list-style: none;
+    
+}
+.nav-elements .dash-btn{
+    font-size: 20px;
+    background-color: rgb(11, 113, 254);
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.nav-elements .dash-btn:hover{
+    
+    background-color: rgb(0, 97, 232);
+    
+}
+
+.nav-elements .dash-btn:active{
+    font-size: 22px;
+    /* background-color: rgb(0, 97, 232); */
+    
+}
+
+
+.nav-link{
+    color: black;
+    text-transform: capitalize;
+    text-decoration: none;
+    font-size: 23px;
+}
+.nav-link:hover{
+    text-decoration:  underline;
+    
+}
+
+
+.navbar-mobile-buttons{
+    display: none;
+    height: 60px;
+}
+
+.closed{
+    display: none;
+}
+
+
+.open{
+    height: 60px;
+    font-size: 30px;
+    padding: 15px 0;
+}
+

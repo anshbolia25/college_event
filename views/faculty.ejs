@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Student Page</title>
+
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff; /* Changed background color to white */
+            color: #000000; /* Changed text color to black */
+            line-height: 1.6;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-left img{
+            height: 50px;
+        }
+        .navbar-right {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .navbar-right li {
+            margin-right: 20px;
+        }
+
+        .navbar-right li:last-child {
+            margin-right: 0;
+        }
+
+        .navbar-right a {
+            text-decoration: none;
+            color: #000000;
+            text-transform: capitalize;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar-right a:hover {
+            color: #ffd700;
+        }
+
+        .logo {
+            width: 50px; /* Adjust size as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 20px;
+        }
+
+        /* Section styles */
+        section {
+            padding: 40px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #000000;
+            font-size: 28px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #666666;
+        }
+
+        
+        /* Home section styles */
+#home {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    padding: 100px;
+    height: 100vh;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+#home h2{
+    color: white;
+}
+.home-content {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+}
+
+.home-image img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.home-text {
+    max-width: 45%;
+}
+
+.home-text h2 {
+    font-size: 28px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.home-text p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.cta-buttons {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.cta-buttons a {
+    display: inline-block;
+    margin-right: 20px;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-buttons a:hover {
+    background-color: #ffd700;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 24px;
+    color: #0055A4;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #ffd700;
+}
+
+
+        /* About section styles */
+        #about {
+            /* height: 100vh; */
+            padding: 100px;
+            background-color: #000000;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        #about h2{
+            color: white;
+        }
+        .about-cards {
+            display: grid;
+            grid-template-columns: 300px 300px 300px;
+            flex-wrap: nowrap;
+            gap: 20px;
+            padding: 50px;
+            /* padding-left: 210px; */
+        }
+
+        .about-card {
+            padding: 5px;
+            width: 350px;
+            height: 200px; /* Set a fixed height */
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 2px solid #232323;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-card i {
+           font-size: 40px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .about-details {
+            padding: 20px;
+        }
+
+        .about-details h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #000000;
+        }
+
+        .about-details p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        /* Event slider styles */
+        #events{
+            height: 100vh;
+        }
+        .eventContainer {
+            padding-left: 100px;
+            padding-right: 100px;
+            margin-top: 100px;
+            /* text-align: center; */
+        }
+
+        .event-slider {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-list {
+            display: flex;
+            width: 50%;
+
+            /* justify-content: center; */
+            transition: transform 0.5s ease-in-out;
+        }
+        .card_container{
+            display: flex;
+            padding: 0 100px;
+            /* width: 100px; */
+            justify-content: space-between;
+            /* margin-right */
+        }
+
+        .event-item {
+            flex: 0 0 1230px;
+            height: 50vh;
+            width: 60%;
+            padding-left: 330px;
+            display: flex;
+            align-items: center;
+            
+            background-color: #ffffff;
+            border-radius: 10px;
+            /* text-align: center; */
+            /* overflow: hidden; */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+            /* display:flex; */
+            /* flex-direction: row; */
+            /* border: 2px solid #000000; */
+        }
+
+        .event-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-item img {
+            width: 300px;
+            padding: 20px;
+            border: 2px solid rgb(200, 199, 199);
+            box-shadow: 5px 5px 5px 5px rgb(153, 150, 146);
+            border-radius: 10%;
+            
+            height: 300px;
+            object-fit: cover;
+            /* border-radius: 10px 10px 0 0; */
+        }
+
+        .event-details {
+            padding: 20px;
+            text-align: center;
+            padding-top: 100px;
+            padding-left: 60px;
+        }
+
+        .event-details h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #000000;
+            text-transform: capitalize;
+        }
+
+        .event-details p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        /* Register button styles */
+        .register-button {
+            display: inline-block;
+            background-color: #0055A4;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .register-button:hover {
+            background-color: #ffd700;
+        }
+
+        /* Filter button styles */
+        .filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .filters button {
+            background-color: #5a45d2;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .filters button:hover {
+            background-color: #3532e8;
+        }
+
+        /* Previous and Next button styles */
+        #prevBtn,
+        #nextBtn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        #prevBtn:hover,
+        #nextBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        #prevBtn {
+            left: 10px;
+        }
+
+        #nextBtn {
+            right: 10px;
+            z-index: 1000;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background-color: #0055A4;
+        }
+
+        /* Rules section styles */
+        /* Rules section styles */
+#rules {
+    padding: 100px;
+    text-transform: capitalize;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 100vh;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.rules-heading {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 28px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.rules-para {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+}
+.rules-boxes{
+    display: grid;
+    /* margin-left: 100px; */
+    margin-top: 70px;
+            /* justify-content: center; */
+    grid-template-columns: 200px 200px 200px;
+            /* flex-wrap: wrap; */
+            column-gap: 250px;
+        
+            row-gap: 20px;
+    
+}
+/* Individual rule boxes */
+.rule-box {
+    border: 2px solid #ccc; /* Add border to each rule box */
+    border-radius: 10px; /* Add border radius */
+    padding: 20px;
+    width: 400px;
+    height: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+    margin-bottom: 20px;
+}
+
+.rule-box h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.rule-box p {
+    font-size: 16px;
+    color: #666;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-left">
+                <img src="image/download.jpeg" alt="Logo" class="logo">
+            </div>
+            <ul class="navbar-right">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Event Listing</a></li>
+                <li><a href="#rules">faculty Rules</a></li>
+                <form id="dashboard-form" action="/dashboard" method="post"> <!-- Use method="get" to pass the email via query string -->
+                    <input type="hidden" name="email" value="<%= email %>"> <!-- Include the email as a hidden input -->
+                    <input type="hidden" name="name" value="<%= userName %>">
+                    <button type="submit" class="dashboard-button">Go to Dashboard</button>
+                </form>
+                
+            </ul>
+        </div>
+    </nav>
+    
+
+    <section id="home"> 
+        <h2 id="user-name">Welcome, Prof.  <%= userName %>!<br> in our Faculty Portal!</h2> <div class="container"> <div class="home-content"> <div class="home-image"> <img src="image/eventbg.jpeg" alt="Image"> </div> <div class="home-text"> <p>Dear students, welcome to our online portal where you can access all the information you need about upcoming events, student rules, and much more. Make sure to explore all the sections and stay updated!</p> <p>If you have any questions or need assistance, don't hesitate to contact us.</p> <div class="social-links"> <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a> <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a> <a href="#" class="social-icon"><i class="fa fa-instagram"></i></a> </div> </div> </div> </div> <div class="cta-buttons"> <a href="#events" class="register-button">View Events</a> <a href="#about" class="register-button">Learn More About Us</a> </div> </section>
+    
+    <hr>
+
+    <section id="about">
+        <h2>About</h2>
+        <div class="container">
+            <div class="about-cards">
+                <div class="about-card">
+                    <i class="fa fa-solid fa-user"></i>
+                    <div class="about-details">
+                        <h3>Rhythm sethiya</h3>
+                        <p>branch: CSE </p>
+                        <p>Email: sethiyarhythm494@gmail.com</p>
+                    </div>
+                </div>
+                <div class="about-card">
+                    <i class="fa fa-solid fa-user"></i>
+                    <div class="about-details">
+                        <h3>Harsh jain</h3>
+                        <p>branch: CSE</p>
+                        <p>Email: talatiharsh19@gmail.com</p>
+                    </div>
+                </div>
+                <div class="about-card">
+                    <i class="fa fa-solid fa-user"></i>
+                    <div class="about-details">
+                        <h3>Ansh bolia</h3>
+                        <p>branch: CSE</p>
+                        <p>Email: anshbolia47@gmail.com</p>
+                    </div>
+                </div>
+                <div class="about-card">
+                    <i class="fa fa-solid fa-user"></i>
+                    <div class="about-details">
+                        <h3>akarsh Singh</h3>
+                        <p>Branch: CSE</p>
+                        <p>Email: akarshsingh19@gmail.com</p>
+                    </div>
+                </div>
+                <div class="about-card">
+                    <i class="fa fa-solid fa-user"></i>
+                    <div class="about-details">
+                        <h3>pranjal khairnar</h3>
+                        <p>branch: CSE</p>
+                        <p>Email: pranjal@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section id="events">
+        <div class="eventContainer">
+            <h2>Event Listing</h2>
+            <div class="filters">
+                <button id="filter-all" onclick="filterEvents('all')">All</button>
+                <button id="filter-seminar" onclick="filterEvents('seminar')">Seminars</button>
+                <button id="filter-social" onclick="filterEvents('social')">Social</button>
+                <button id="filter-education" onclick="filterEvents('education')">Education</button>
+            </div>
+            <div class="event-slider" id="event-slider">
+                <div class="event-list" id="event-list"></div>
+                <button id="prevBtn" onclick="prevSlide()"><i class="fa fas fa-chevron-left"></i></button>
+                <button id="nextBtn" onclick="nextSlide()"><i class="fa fas fa-chevron-right"></i></button>
+                <div class="slider-dots" id="slider-dots"></div>
+            </div>
+
+        </div>
+    </section>
+    <hr>
+    <section id="rules">
+        <div class="Rulecontainer">
+            <h2 class="rules-heading">Faculty Guide</h2>
+            <!-- <p class="rules-para">Welcome to our student guide section! Here you will find important information and resources to help you navigate through your academic journey.</p> -->
+            <div class="rules-boxes">
+                <div class="rule-box">
+                    <h3>Step 1: Registration</h3>
+                    <p>Ensure to register for the event in advance. Provide accurate and complete information during registration.</p>
+                </div>
+                <div class="rule-box">
+                    <h3>Step 2: Understand the Event</h3>
+                    <p>Read about the event details thoroughly. Understand the purpose, agenda, and rules of the event.</p>
+                </div>
+                <div class="rule-box">
+                    <h3>Step 3: Punctuality</h3>
+                    <p>Arrive on time for the event. Punctuality shows respect for the event organizers and other participants.</p>
+                </div>
+                <div class="rule-box">
+                    <h3>Step 4: Participation</h3>
+                    <p>Participate actively in the event. Ask questions, engage in discussions, and contribute your ideas.</p>
+                </div>
+                <div class="rule-box">
+                    <h3>Step 5: Respect and Decorum</h3>
+                    <p>Maintain respect and decorum during the event. Treat all participants, including the event organizers and other students, with respect.</p>
+                </div>
+                <div class="rule-box">
+                    <h3>Step 6: Follow-up</h3>
+                    <p>After the event, follow up on any commitments or tasks you have taken up. Provide feedback to the organizers if requested.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- <hr> -->
+    <footer style="background-color: #000000;color: white; padding: 20px; text-align: center;  width: 100%; bottom: 0;">
+        <p style="margin-bottom: 10px; color: white;" >© 2024 MIT WPU. All rights reserved.</p>
+        <button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;" onclick="location.href='mailto:contact@mitwpu.edu.in'">Contact Us</button>
+    </footer>
+    
+
+    <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('/get-events')
+        .then(response => response.json())
+        .then(events => {
+            const eventList = document.getElementById('event-list');
+            let currentIndex = 0;
+            let filteredEvents = events; // Initialize filtered events with all events
+
+            // Function to filter events
+            function filterEvents(category) {
+                filteredEvents = category === 'all' ?
+                    events :
+                    events.filter(event => event.type === category);
+
+                eventList.innerHTML = ''; // Clear existing events
+                currentIndex = 0;
+
+                filteredEvents.forEach(event => {
+                    const eventDiv = document.createElement('div');
+                    eventDiv.classList.add('event-item');
+                    eventDiv.innerHTML = `
+    <div class="card_container">
+        <div class="event-image">
+            <img src="${event.image}" alt="${event.name}" />
+        </div>
+        <div class="event-details">
+            <h3>${event.name}</h3>
+            <p><strong>Date:</strong> ${event.date}</p>
+            <p><strong>Location:</strong> ${event.location}</p>
+            <p><strong>Description:</strong> ${event.description}</p>
+            <!-- Registration Form -->
+            
+<form id="register-form" action="/register" method="post">
+    <input type="hidden" name="name" value="<%= userName %>">
+    <input type="hidden" name="email" value="<%= email %>">
+    <input type="hidden" name="category" value="<%= category %>">
+    <input type="hidden" name="event_id" value="${event.id}">
+    <input type="hidden" name="event_name" value="${event.name}">
+    <input type="hidden" name="image" value="${event.image}">
+
+    <button type="submit" class="register-button">Register Now</button>
+</form>
+
+
+        </div>
+    </div>
+`;
+
+                    eventList.appendChild(eventDiv);
+                });
+
+                updateSlider();
+                updateSliderDots();
+            }
+
+            // Attach event listeners to filter buttons
+            document.getElementById('filter-all').addEventListener('click', () => filterEvents('all'));
+            document.getElementById('filter-seminar').addEventListener('click', () => filterEvents('seminar'));
+            document.getElementById('filter-social').addEventListener('click', () => filterEvents('social'));
+            document.getElementById('filter-education').addEventListener('click', () => filterEvents('education'));
+
+            // Function to update slider position
+            function updateSlider() {
+                const eventItems = document.querySelectorAll('.event-item');
+                const itemWidth = eventItems[0].offsetWidth; // Width
+                const newPosition = -currentIndex * itemWidth;
+                document.getElementById('event-list').style.transform = `translateX(${newPosition}px)`;
+            }
+
+            // Function to handle next slide
+            function nextSlide() {
+                if (currentIndex < filteredEvents.length - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0; // Go back to the first event
+                }
+                updateSlider();
+                updateSliderDots();
+            }
+
+            // Function to handle previous slide
+            function prevSlide() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = filteredEvents.length - 1; // Go to the last event
+                }
+                updateSlider();
+                updateSliderDots();
+            }
+
+            // Initialize event listeners for next and previous buttons
+            document.getElementById('nextBtn').addEventListener('click', nextSlide);
+            document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+            // Function to update slider pagination dots
+            function updateSliderDots() {
+                const dotsContainer = document.getElementById('slider-dots');
+                dotsContainer.innerHTML = '';
+                filteredEvents.forEach((event, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('slider-dot');
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    }
+                    dot.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateSlider();
+                        updateSliderDots();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+            
+            // Initially display all events
+            filterEvents('all');
+        })
+        .catch(error => console.error('Error fetching events:', error));
+});
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+    // Get the user name from the response object of the login post request
+    const queryStringParams = new URLSearchParams(window.location.search);
+    const userName = queryStringParams.get('name');
+
+    // Check if userName is null or undefined
+    if (userName) {
+        // Update the user-name span's text with the user's name
+        document.getElementById('user-name').textContent = userName;
+    }
+});
+document.addEventListener("DOMContentLoaded", function () {
+    // Function to handle form submission
+    const registerForm = document.getElementById('register-form');
+
+    registerForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        // Retrieve form data
+        const formData = new FormData(registerForm);
+
+        // Validate form data
+        if (formData.get('event_id') && formData.get('event_name')) {
+            // Submit form data to the server
+            fetch('/register', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Registration successful
+                    console.log('Registration successful');
+                    // Optionally, redirect to a success page or perform any other actions
+                } else {
+                    // Registration failed
+                    console.error('Registration failed:', response.statusText);
+                    // Optionally, display an error message to the user
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting registration:', error);
+                // Optionally, display an error message to the user
+            });
+        } else {
+            // Display error message for missing fields
+            console.error('All fields are required.');
+            // Optionally, display an error message to the user
+        }
+    });
+});
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/student.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/student.js"></script>
+</head>
+<body>
+    <nav style="display: flex; gap: 400px; margin: 10px;  height: 50px; margin: 0; align-items: center; border: 2px solid rgb(191, 190, 190);  box-shadow: 1px 1px 1px rgb(214, 197, 197); width: 100%">
+     
+      <img src="" alt="logo" style="font-size: 25px; width: 100px;">
+      <div class="nav-elements" style="display: flex; gap: 150px; ">
+        <ul style="display: flex; width: 350px; opacity: 0.8; align-items: center; justify-content: space-between;">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Event listing</a></li>
+          <li><a href="#">services</a></li>
+        </ul>
+        <button style="padding: 5px; margin-left: 350px;  cursor: pointer; font-size: 20px;">dashboard</button>
+      </div>
+
+     
+    </nav>
+
+
+    <!-- home section -->
+    <div class="home">
+      <button class="btn1" onclick="goPrev()">prev</button>
+      <main>
+        <div class="box slider">
+          <img src="https://picsum.photos/id/237/1000/400"  alt="">
+          <button class="reg-btn">register</button>
+          <button class="know-more">know more</button>
+        </div>
+        <div class="box slider">
+          <img src="https://picsum.photos/id/238/1000/400"  alt="">
+          <button class="reg-btn">register</button>
+          <button class="know-more">know more</button>
+        </div>
+        <div class="box slider">
+          <img src="https://picsum.photos/id/239/1000/400"  alt="">
+          <button class="reg-btn">register</button>
+          <button class="know-more">know more</button>
+        </div>
+        <div class="box slider">
+          <img src="https://picsum.photos/id/240/1000/400"  alt="">
+          <button class="reg-btn">register</button>
+          <button class="know-more">know more</button>
+        </div>
+        <div class="box slider"> 
+          <img src="https://picsum.photos/id/241/1000/400"  alt="">
+          <button class="reg-btn">register</button>
+          <button class="know-more">know more</button>
+        </div>
+
+        
+        
+        
+       
+      </main>
+      <button class="btn2" onclick="goNext()">next</button>
+    </div>
+
+    <!-- register info -->
+    <div class="reg-modal">
+      <!-- hello i am a reg-modal -->
+      <dialog class="modal">
+          <!-- this is the register element -->
+          <img src="https://picsum.photos/id/237/400/400"  alt="">
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, voluptatum.</p>
+          <button class="closemodal">X</button>
+      </dialog>
+    </div>
+
+
+    <div class="home">
+      welcome to the home page
+    </div>
+</body>
+
+<script>
+  const slides = document.querySelectorAll(".slider")
+var counter = 0
+const closemodal = document.querySelector(".closemodal")
+slides.forEach(
+    (slide,index)=>{
+        slide.style.left = `${index*100}%`;
+    }
+)
+
+const slideImage  =()=>{
+    slides.forEach(
+        (slide)=>{
+            slide.style.transform =  `translateX(-${counter*100}%)`
+        }
+    )
+}
+
+function goPrev(){
+  if(counter==0)
+  {
+      counter = 5;
+  }
+    counter--
+    console.log("hello")
+    slideImage()
+}
+
+function goNext()
+{
+  if(counter==4)
+  {
+    counter = -1;
+  }
+    counter++;
+    slideImage();
+}
+
+
+// opening the reg modal
+const regbtn = document.querySelectorAll('.reg-btn')
+const modal  = document.querySelector('.modal')
+
+regbtn.forEach(btn => {
+  btn.addEventListener('click', (event) => {
+    event.preventDefault();
+    modal.style.display = 'block';
+    // modal.show();
+  });
+});
+closemodal.addEventListener('click', () => {
+  modal.style.display = 'none';
+  // modal.close();
+});
+</script>
+</html>
